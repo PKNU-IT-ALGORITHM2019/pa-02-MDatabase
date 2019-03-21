@@ -9,6 +9,13 @@ def tour(OOL,used,length,route): #Order of Location
         LOL= LBP(locations[OOL],locations[i]) #Legnth of Locations
             
         length[0]+=LOL
+
+        if not length[1] is None: # 중간 가지치기를 위한 코드
+            if length[0]>length[1]:
+                length[0]-=LOL
+ #               used.pop()
+                return
+
         tour(i,used,length,route)
         length[0]-=LOL
         used.pop()

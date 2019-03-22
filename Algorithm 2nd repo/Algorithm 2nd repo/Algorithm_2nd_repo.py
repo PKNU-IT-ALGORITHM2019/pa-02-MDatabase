@@ -17,21 +17,21 @@ def tour(OOL,used,length,route): #Order of Location
                 return
 
         tour(i,used,length,route)
-        length[0]-=LOL
-        used.pop()
+        length[0]-=LOL # 루트를 들어갔다가 다시 나올때의 과정.1
+        used.pop()     # .2
     
  
 
     if len(used) is N:
         LOL= LBP(locations[used[0]],locations[used[N-1]]) #Legnth of Locations        
         length[0]+=LOL
-        if length[1] is None:
+        if length[1] is None: # 처음으로 제일 깊게 들어간 루트는 그냥 정답안에 입력
             del route[:]
             for i in range(N):
                 route.append(used[i])
 
             length[1]=length[0]
-        elif length[1] >length[0]:
+        elif length[1] >length[0]: # 처음, 그 후부터는 루트의 길이가 정답에 있는 길이보다 짧다면 정답에 입력`
             del route[:]
             for i in range(N):
                 route.append(used[i])
@@ -65,25 +65,12 @@ for i in range(N): # 파일에서 좌표를 읽어 locations에 저장
 used=[]
 route=[]
 length=[0,None]
-for i in range(N):
-    #if i is 0:
-        result=tour(i,used,length,route)
-        used.pop()
- #   elif result_temp
- #   else:
-  #      result_temp= tour(i,used,length,route)
-   #     used.pop()
-   #     if result> result_temp:
-   #         result=result_temp
+
+
+result=tour(i,used,length,route)
 
 
 
 
+print(route,length[1]) # 결과 출력
 
-print(route,length[1])
-
-#print(LBP(locations[0],locations[1])) # test of LBP = sucess
-
-
-
-#print(locations)
